@@ -73,7 +73,7 @@ const NewPost = ({addNewPost}: {addNewPost: (newPost: Post) => void}) => {
                   const compressedData = await ffmpeg.readFile('output.mp4');
                   
                   // radimo novi File objekt sa kompresiranim podacima
-                  const compressedFile = new File([compressedData], 'compressed.mp4', { type: 'video/mp4' });
+                  const compressedFile = new File([compressedData as Uint8Array<ArrayBuffer>],'compressed.mp4', { type: 'video/mp4' });
                   
                   // dodajemo kompresiranu datoteku u FormData
                   formData.append('Files', compressedFile);
