@@ -178,7 +178,7 @@ const EachComment = ({post, comment, refreshComments, updateComment, callComment
         return;
       }
       try {
-          const res = await axios.post(`https://snetapi-evgqgtdcc0b6a2e9.germanywestcentral-01.azurewebsites.net/api/comments/add-reply/${comment.commentId}`, {content: replyContent});
+          const res = await axios.post(`https://snetapi.onrender.com/api/comments/add-reply/${comment.commentId}`, {content: replyContent});
           if(res.status === 200) {
             const newReply: Reply = res.data;
             setCommentReplies((prev) => [...prev, newReply]);

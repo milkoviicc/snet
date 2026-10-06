@@ -12,7 +12,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const API_BASE_URL = 'https://snetapi-evgqgtdcc0b6a2e9.germanywestcentral-01.azurewebsites.net/';
+const API_BASE_URL = 'https://snetapi.onrender.com';
 
 // Kreiramo axios instancu s osnovnim URL-om i headerima
 const api = axios.create({
@@ -53,7 +53,7 @@ export const accountApi = {
     try {
 
       // šaljem axios post request na API, primam response tipa 'User', a prenosim username, email, lozinku i potvrdjenu lozinku
-      const res = await axios.post<Auth>('https://snetapi-evgqgtdcc0b6a2e9.germanywestcentral-01.azurewebsites.net/api/account/register', {username, email, password, confirmPassword});
+      const res = await axios.post<Auth>('https://snetapi.onrender.com/api/account/register', {username, email, password, confirmPassword});
 
       // spremam primljene podatke u varijablu newUser tipa User
       const newUser: Auth = res.data;
@@ -85,7 +85,7 @@ export const accountApi = {
     try {
 
       // šaljem axios post request na API, primam response tipa 'User', a prenosim name(username/email) i lozinku
-      const res = await axios.post<Auth>('https://snetapi-evgqgtdcc0b6a2e9.germanywestcentral-01.azurewebsites.net/api/account/login', {
+      const res = await axios.post<Auth>('https://snetapi.onrender.com/api/account/login', {
         name,
         password
       });
@@ -132,7 +132,7 @@ export const accountApi = {
   // async funkcija za brisanje računa
   deleteAccount: async () => {
     try {
-      const res = await axios.delete(`https://snetapi-evgqgtdcc0b6a2e9.germanywestcentral-01.azurewebsites.net/api/account/delete-user`);
+      const res = await axios.delete(`https://snetapi.onrender.com/api/account/delete-user`);
       document.cookie.replace(/(?<=^|;).+?(?=\=|;|$)/g, name => location.hostname.split('.').reverse().reduce(domain => (domain=domain.replace(/^\.?[^.]+/, ''),document.cookie=`${name}=;max-age=0;path=/;domain=${domain}`,domain), location.hostname));
       return res;
     } catch(err) {
